@@ -12,12 +12,13 @@
 <body>
     <!-- Header Section -->
     <header class="header">
-        <img src="../src/assets/IMP LOGO.png" alt="Madrasa Logo" class="logo">
         <div class="header-text">
-            <h1>مدرسة إعلام الدين الثانوية العليا</h1>
-            <h2>Ihlamudeen Higher Secondary Madrasa</h2>
-            <h3>North Pallar, Vairangode P.O, Thirunnavaya Malappuram (Dist), Kerala-676301</h3>
+            <h1>مدرسة مصباح الهدى، كرنكاد</h1>
+            <h2>MISBAHUL HUDA MADRASA, KURUNKAD</h2>
+            <h3>Kurunkad, Ponmundam (PO), Vailathur, Malappuram Kerala-676106</h3>
         </div>
+
+
     </header>
 
     <div class="container">
@@ -58,38 +59,41 @@
 
         <div id="loading" class="loading">Loading...</div>
         <div id="result" class="result"></div>
+        <button onclick="generatePDF()" class="no-print">Download Result</button>
+        <button onclick="window.print()" class="no-print">Print Result</button>
     </div>
-    <button onclick="generatePDF()" class="no-print">Download Result</button>
-    <button onclick="window.print()" class="no-print">Print Result</button>
+
     <footer style="text-align: center; padding: 10px; background-color: #f8f9fa; font-size: 14px;">
-        <p>© <script>document.write(new Date().getFullYear());</script> All Rights Reserved | Powered by  
-            <a href="https://www.example.com" target="_blank" style="text-decoration: none; font-weight: bold; color: #007bff;">IMP Pallar</a>
+        <p>©
+            <script>document.write(new Date().getFullYear());</script> All Rights Reserved | Powered by
+            <a href="https://www.example.com" target="_blank"
+                style="text-decoration: none; font-weight: bold; color: #007bff;">S.AjaS.N</a>
         </p>
     </footer>
-    
+
 
     <script src="script.js"></script>
     <script>
 
-function generatePDF() {
+        function generatePDF() {
             const noPrintElements = document.querySelectorAll('.no-print');
             noPrintElements.forEach(el => el.style.display = 'none');
             const element = document.body;
             html2canvas(element, {
-              scale: 2,
-              useCORS: true
+                scale: 2,
+                useCORS: true
             }).then(canvas => {
-            const imgData = canvas.toDataURL("image/png");
-            const link = document.createElement("a");
-           link.href = imgData;
-           link.download = "Result.png";
-           document.body.appendChild(link);
-           link.click();
-           document.body.removeChild(link);
-            noPrintElements.forEach(el => el.style.display = '');
-           });
-         }
-      
+                const imgData = canvas.toDataURL("image/png");
+                const link = document.createElement("a");
+                link.href = imgData;
+                link.download = "Result.png";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                noPrintElements.forEach(el => el.style.display = '');
+            });
+        }
+
     </script>
 </body>
 
