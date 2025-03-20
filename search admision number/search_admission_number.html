@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Search</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .error {
+      color: red;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      input,
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h2>Search Student Admission Number</h2>
+
+    <label for="class">Class:</label>
+    <input type="text" id="class" placeholder="Enter Class" required>
+
+    <label for="division">Division:</label>
+    <input type="text" id="division" placeholder="Enter Division" required>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required>
+
+    <button onclick="searchStudent()">Search</button>
+
+    <p class="result" id="result"></p>
+  </div>
+
+  <script>
+    function searchStudent() {
+      const studentClass = document.getElementById("class").value.trim();
+      const division = document.getElementById("division").value.trim().toUpperCase();
+      const dob = document.getElementById("dob").value.trim();
+
+      const resultElement = document.getElementById("result");
+      resultElement.innerHTML = "";
+
+      if (!studentClass || !division || !dob) {
+        resultElement.innerHTML = `<span class="error">Please fill in all fields.</span>`;
+        return;
+      }
+
+      const apiUrl = `https://script.google.com/macros/s/AKfycbyEFyXpYRSHqBkCwH0dICURhivpeEVyBz4fp-L49fWSAQmQ-ASA0i0OR-zz29qreQRv/exec?class=${studentClass}&division=${division}&dob=${dob}`;
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            resultElement.innerHTML = `<span class="error">❌ ${data.error}</span>`;
+          } else {
+            resultElement.innerHTML = `✅ <strong>Admission Number:</strong> ${data.admissionNumber} <br> <strong>Full Name:</strong> ${data.fullName}`;
+          }
+        })
+        .catch(error => {
+          resultElement.innerHTML = `<span class="error">❌ Failed to fetch data.</span>`;
+          console.error("Error fetching data:", error);
+        });
+    }
+  </script>
+
+</body>
+
+</html>
