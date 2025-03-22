@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result | MISBAHUL HUDA MADRASA, KURUNKAD | Annual Exam Result 2025</title>
-    <link rel="icon" type="image/x-icon" href="../src/assets/IMP LOGO.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -22,8 +21,8 @@
     </header>
 
     <div class="container">
-        <h1>Student Progress Card</h1>
-        <form id="searchForm" onsubmit="fetchStudentData(event)">
+        <h1 class="hide-on-print">Student Progress Card</h1>
+        <form class="hide-on-print" id="searchForm" onsubmit="fetchStudentData(event)">
             <div class="form-group">
                 <label for="admissionNumber">Admission Number:</label>
                 <input type="number" id="admissionNumber" name="admission_number" min="1" required
@@ -59,14 +58,13 @@
 
         <div id="loading" class="loading">Loading...</div>
         <div id="result" class="result"></div>
-        <button onclick="generatePDF()" class="no-print">Download Result</button>
-        <button onclick="window.print()" class="no-print">Print Result</button>
+        <button onclick="window.print()" class="no-print print-btn">Print Result</button>
     </div>
 
     <footer style="text-align: center; padding: 10px; background-color: #f8f9fa; font-size: 14px;">
         <p>©
             <script>document.write(new Date().getFullYear());</script> All Rights Reserved | Powered by
-            <a href="https://www.example.com" target="_blank"
+            <a href="https://ahammedajmal.in/#about" target="_blank"
                 style="text-decoration: none; font-weight: bold; color: #007bff;">S.AjaS.N</a>
         </p>
     </footer>
